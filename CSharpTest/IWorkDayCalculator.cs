@@ -10,7 +10,7 @@ namespace CSharpTest
     {
         DateTime Calculate(DateTime startDate, int dayCount, WeekEnd[] weekEnds);
 
-        int IndexOfFirstWeekEnd(DateTime start, WeekEnd[] weekEnds);
+        int IndexOfNextWeekEnd(DateTime start, WeekEnd[] weekEnds);
 
         int WeekEndDays(DateTime start, DateTime end, WeekEnd[] weekEnds);
     }

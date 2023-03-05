@@ -11,12 +11,12 @@ namespace CSharpTest
 
         public int WeekEndDays(DateTime start, DateTime end, WeekEnd[] weekEnds)
         {
-            int i = IndexOfFirstWeekEnd(start, weekEnds);
+            int i = IndexOfNextWeekEnd(start, weekEnds);
 
             if (i == -1 || weekEnds == null) // there are no weekends anymore
                 return 0;
 
-            if (DateTime.Compare(weekEnds[i].StartDate, end) > 0) // the remained weekends are not in the 
+            if (DateTime.Compare(weekEnds[i].StartDate, end) > 0) // the remained weekends are not relevant
                 return 0;
 
             DateTime nextStart = (weekEnds[i].EndDate).AddDays(1);
@@ -24,7 +24,7 @@ namespace CSharpTest
             return daysInCurrentWeekend + WeekEndDays(nextStart, end, weekEnds);
         }
 
-        public int IndexOfFirstWeekEnd(DateTime start, WeekEnd[] weekEnds)
+        public int IndexOfNextWeekEnd(DateTime start, WeekEnd[] weekEnds)
         {
             if(start == null || weekEnds == null)
                 return 0;
@@ -36,7 +36,7 @@ namespace CSharpTest
                 else
                     indexOfFirstWeekend++;
             }
-            return -1; // there's no weekend
+            return -1; // there are no weekends anymore
         }
         public DateTime Calculate(DateTime startDate, int dayCount, WeekEnd[] weekEnds)
         {
